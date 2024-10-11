@@ -6,29 +6,21 @@ class Solution {
             result[array[i]]++;
         }
 
-        // 최빈값을 확인
+        // 최빈값 및 중복되는 값인지 확인
         int max = 0;
         int maxIndex = 0;
+        boolean multiple = false;
         for (int i = 0; i < result.length; i++) {
             if (result[i] > max) {
                 max = result[i];
                 maxIndex = i;
+                multiple = false;
+            } else if (result[i] == max) {
+                multiple = true;
             }
         }
-
-        // 최빈값의 갯수를 확인
-        int count = 0;
-        for (int value : result) {
-            if (value == max) {
-                count++;
-            }
-        }
-
-        // max 값이 여러개인경우 -1 return
-        if (count >= 2) {
-            return -1;
-        } else { //  아닌 경우 max 값 return
-            return maxIndex;
-        }
+        
+        // 중복되는 값이라면 -1 return, 아니라면 maxIndex return
+        return multiple ? -1 : maxIndex;
     }
 }
