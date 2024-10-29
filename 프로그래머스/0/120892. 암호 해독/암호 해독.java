@@ -3,7 +3,7 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         char[] chArr = cipher.toCharArray();
         for (int i = 0 ; i < chArr.length; i++) {
-            if ((i +1) % code == 0) {
+            if ((i + 1) % code == 0) {
                 sb.append(chArr[i]);
             }
         }
