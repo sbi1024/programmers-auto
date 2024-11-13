@@ -19,11 +19,14 @@ public class Main {
             }
         }
 
+        StringBuilder sb = new StringBuilder();
         TreeSet<String> sortSet = new TreeSet<>(set);
         Iterator<String> iterator = sortSet.descendingIterator();
         while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+            sb.append(iterator.next());
+            sb.append("\n");
         }
+        System.out.println(sb);
     }
 }
 
