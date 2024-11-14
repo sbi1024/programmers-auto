@@ -3,29 +3,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int inputCount = Integer.parseInt(br.readLine());
-        Map<Integer, Integer> inputMap = new HashMap<>();
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        String[] inputs = br.readLine().split(" ");
+        Map<Integer, Integer> inputMap = new HashMap<>(inputCount);
+
         for (int i = 0; i < inputCount; i++) {
-            int input = Integer.parseInt(st.nextToken());
-            if (inputMap.get(input) == null) inputMap.put(input, 1);
-            else inputMap.put(input, inputMap.get(input) + 1);
+            int input = Integer.parseInt(inputs[i]);
+            inputMap.put(input, inputMap.getOrDefault(input, 0) + 1);
         }
-        StringBuilder sb = new StringBuilder();
+
         int findCount = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
+        String[] queries = br.readLine().split(" ");
+        StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < findCount; i++) {
-            int findValue = Integer.parseInt(st.nextToken());
-            Integer value = inputMap.get(findValue);
-            if (value == null) sb.append(0).append(" ");
-            else sb.append(value).append(" ");
+            int findValue = Integer.parseInt(queries[i]);
+            sb.append(inputMap.getOrDefault(findValue, 0)).append(" ");
         }
         System.out.println(sb);
     }
 }
-
