@@ -14,7 +14,7 @@ public class Main {
 
         Map<String, Integer> inputStringMap = new HashMap<>();
         Map<Integer, String> inputIntMap = new HashMap<>();
-
+        StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= inputCount + findCount; i++) {
             if (i <= inputCount) {
                 String input = br.readLine();
@@ -25,12 +25,14 @@ public class Main {
                 try {
                     int index = Integer.parseInt(findValue);
                     String name = inputIntMap.get(index);
-                    System.out.println(name);
+                    sb.append(name).append("\n");
                 } catch (NumberFormatException e) {
                     Integer index = inputStringMap.get(findValue);
-                    System.out.println(index);
+                    sb.append(index).append("\n");
                 }
             }
         }
+        System.out.println(sb);
     }
 }
+

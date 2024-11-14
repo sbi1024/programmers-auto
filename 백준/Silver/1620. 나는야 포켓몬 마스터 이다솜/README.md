@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 103956 KB, 시간: 1408 ms
+메모리: 111660 KB, 시간: 700 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2024년 11월 14일 10:06:59
+2024년 11월 14일 10:08:57
 
 ### 문제 설명
 
@@ -74,7 +74,7 @@
 
 <p>가라 몬스터 볼!</p>
 
-<p><img alt="" src="" style="height:184px; width:274px"></p>
+<p><img alt="" src="https://www.acmicpc.net/upload/201004/p7.PNG" style="height:184px; width:274px"></p>
 
 <p>이다솜 : 야호! 신난다. 꼬렛을 잡았다!!!!!</p>
 
@@ -106,7 +106,7 @@
 
 <p><img alt="" src="" style="height:182px; width:274px"></p>
 
-<p><img alt="" src="" style="height:183px; width:274px"></p>
+<p><img alt="" src="https://www.acmicpc.net/upload/201004/pe.PNG" style="height:183px; width:274px"></p>
 
 <p><img alt="" src="" style="height:183px; width:274px"></p>
 
