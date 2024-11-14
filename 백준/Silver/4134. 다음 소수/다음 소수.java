@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int forCount = Integer.parseInt(br.readLine());
         for (int i = 0; i < forCount; i++) {
@@ -11,8 +12,9 @@ public class Main {
             while (!isPrime(input)) {
                 input++;
             }
-            System.out.println(input);
+            sb.append(input).append("\n");
         }
+        System.out.println(sb);
     }
 
     public static boolean isPrime(long input) {
