@@ -5,63 +5,36 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Main {
-    public static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
+        StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int forCount = Integer.parseInt(br.readLine());
         Deque<Integer> deque = new ArrayDeque<>();
-
         for (int i = 0; i < forCount; i++) {
-            String[] split = br.readLine().split(" ");
-            if (split.length == 2) {
-                int X = Integer.parseInt(split[1]);
-                method1(deque, X);
-            } else {
-                int methodCallIndex = Integer.parseInt(split[0]);
-                if (methodCallIndex == 2) {
-                    method2(deque);
-                } else if (methodCallIndex == 3) {
-                    method3(deque);
-                } else if (methodCallIndex == 4) {
-                    method4(deque);
-                } else if (methodCallIndex == 5) {
-                    method5(deque);
-                }
+            String input = br.readLine();
+            char ch = input.charAt(0);
+            switch (ch) {
+                case '1':
+                    int x = Integer.parseInt(input.substring(2));
+                    deque.addFirst(x);
+                    break;
+                case '2':
+                    if (!deque.isEmpty()) sb.append(deque.removeFirst()).append('\n');
+                    else sb.append(-1).append('\n');
+                    break;
+                case '3':
+                    sb.append(deque.size()).append('\n');
+                    break;
+                case '4':
+                    if (deque.isEmpty()) sb.append(1).append('\n');
+                    else sb.append(0).append('\n');
+                    break;
+                case '5':
+                    if (!deque.isEmpty()) sb.append(deque.getFirst()).append('\n');
+                    else sb.append(-1).append('\n');
+                    break;
             }
         }
         System.out.println(sb);
-    }
-
-    public static void method1(Deque<Integer> deque, int X) {
-        deque.addFirst(X);
-    }
-
-    public static void method2(Deque<Integer> deque) {
-        if (!deque.isEmpty()) {
-            Integer firstValue = deque.removeFirst();
-            sb.append(firstValue).append("\n");
-        } else {
-            sb.append(-1).append("\n");
-        }
-    }
-
-    public static void method3(Deque<Integer> deque) {
-        sb.append(deque.size()).append("\n");;
-    }
-
-    public static void method4(Deque<Integer> deque) {
-        if (deque.isEmpty()) {
-            sb.append(1).append("\n");
-        } else {
-            sb.append(0).append("\n");
-        }
-    }
-
-    public static void method5(Deque<Integer> deque) {
-        if (!deque.isEmpty()) {
-            sb.append(deque.getFirst()).append("\n");
-        } else {
-            sb.append(-1).append("\n");
-        }
     }
 }
