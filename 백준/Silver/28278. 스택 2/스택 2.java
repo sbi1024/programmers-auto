@@ -5,10 +5,12 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class Main {
+    public static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int forCount = Integer.parseInt(br.readLine());
         Deque<Integer> deque = new ArrayDeque<>();
+
         for (int i = 0; i < forCount; i++) {
             String[] split = br.readLine().split(" ");
             if (split.length == 2) {
@@ -27,38 +29,39 @@ public class Main {
                 }
             }
         }
+        System.out.println(sb);
     }
 
     public static void method1(Deque<Integer> deque, int X) {
-        deque.addLast(X);
+        deque.addFirst(X);
     }
 
     public static void method2(Deque<Integer> deque) {
         if (!deque.isEmpty()) {
-            Integer lastValue = deque.removeLast();
-            System.out.println(lastValue);
+            Integer firstValue = deque.removeFirst();
+            sb.append(firstValue).append("\n");
         } else {
-            System.out.println(-1);
+            sb.append(-1).append("\n");
         }
     }
 
     public static void method3(Deque<Integer> deque) {
-        System.out.println(deque.size());
+        sb.append(deque.size()).append("\n");;
     }
 
     public static void method4(Deque<Integer> deque) {
         if (deque.isEmpty()) {
-            System.out.println(1);
+            sb.append(1).append("\n");
         } else {
-            System.out.println(0);
+            sb.append(0).append("\n");
         }
     }
 
     public static void method5(Deque<Integer> deque) {
         if (!deque.isEmpty()) {
-            System.out.println(deque.getLast());
+            sb.append(deque.getFirst()).append("\n");
         } else {
-            System.out.println(-1);
+            sb.append(-1).append("\n");
         }
     }
 }
