@@ -11,44 +11,34 @@ public class Main {
 
         String input;
         while (!(input = br.readLine()).equals(".")) {
-            for (int i = 0; i < input.length(); i++) {
+            for (int i = 0; i < input.length() - 1; i++) {
                 char ch = input.charAt(i);
                 if (ch == '[' || ch == '(') {
                     deque.addLast(ch);
-                } else if (ch == ']') {
-                    Character peekLast = deque.peekLast();
+                } else if (ch == ']' || ch == ')') {
                     if (deque.isEmpty()) {
                         deque.addLast(ch);
                         break;
-                    } else if (peekLast == '(' || peekLast == ')') {
-                        deque.addLast(ch);
-                        break;
-                    } else if (peekLast == '[') {
-                        deque.removeLast();
-                    }
-                } else if (ch == ')') {
-                    Character peekLast = deque.peekLast();
-                    if (deque.isEmpty()) {
-                        deque.addLast(ch);
-                        break;
-                    } else if (peekLast == '[' || peekLast == ']') {
-                        deque.addLast(ch);
-                        break;
-                    } else if (peekLast == '(') {
-                        deque.removeLast();
+                    } else {
+                        Character peekLast = deque.peekLast();
+                        if (isMatch(peekLast, ch)) deque.removeLast();
+                        else {
+                            deque.addLast(ch);
+                            break;
+                        }
                     }
                 }
             }
-            if (deque.isEmpty()) {
-                sb.append("yes").append("\n");
-            } else {
-                sb.append("no").append("\n");
-            }
-
+            if (deque.isEmpty()) sb.append("yes").append("\n");
+            else sb.append("no").append("\n");
             deque.clear();
         }
         bw.write(sb.toString());
         bw.flush();
         bw.close();
+    }
+
+    public static boolean isMatch(char open, char close) {
+        return (open == '[' && close == ']') || (open == '(' && close == ')');
     }
 }
