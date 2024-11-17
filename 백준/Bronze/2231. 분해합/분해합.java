@@ -5,20 +5,20 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String inputStr = br.readLine();
-        int inputInt = Integer.parseInt(inputStr);
-        for (int i = 1; i < inputInt; i++) {
-            String[] split = String.valueOf(i).split("");
+        int result = 0;
+        int value = Integer.parseInt(br.readLine());
+        for (int i = 1; i < value; i++) {
+            char[] charArray = Integer.toString(i).toCharArray();
             int sum = 0;
-            for (String str : split) {
-                sum += Integer.parseInt(str);
+            for (char ch : charArray) {
+                sum += ch - '0';
             }
-            if (i + sum == inputInt) {
-                System.out.println(i);
-                return;
+            if (i + sum == value) {
+                result = i;
+                break;
             }
         }
-        System.out.println(0);
+        System.out.println(result);
         br.close();
     }
 }
