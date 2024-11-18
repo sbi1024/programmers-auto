@@ -18,12 +18,13 @@ public class Main {
         int stand = 1;
         while (!deque1.isEmpty()) {
             Integer value = deque1.removeFirst();
-            if (value == stand) stand++;
-            else deque2.addFirst(value);
-            while (!deque2.isEmpty() && (deque2.peekFirst() == stand)) {
-                deque2.removeFirst();
+            if (value == stand) {
                 stand++;
-            }
+                while (!deque2.isEmpty() && (deque2.peekFirst() == stand)) {
+                    deque2.removeFirst();
+                    stand++;
+                }
+            } else deque2.addFirst(value);
         }
 
         if (deque2.isEmpty()) bw.write("Nice");
