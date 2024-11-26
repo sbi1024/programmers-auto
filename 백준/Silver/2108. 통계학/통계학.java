@@ -36,26 +36,25 @@ public class Main {
     }
 
     public static int findMode(Map<Integer, Integer> map) {
-        int maxValue = Integer.MIN_VALUE;
-        for (Integer key : map.keySet()) {
-            Integer value = map.get(key);
+        int maxValue = Integer.MIN_VALUE; // 최대 빈도수
+        List<Integer> candidates = new ArrayList<>(); // 최빈값 후보들
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
+
             if (value > maxValue) {
-                maxValue = value;
+                maxValue = value; // 더 높은 빈도수 발견
+                candidates.clear(); // 기존 후보 초기화
+                candidates.add(key);
+            } else if (value == maxValue) {
+                candidates.add(key); // 같은 빈도수라면 추가
             }
         }
 
-        Set<Integer> set = new TreeSet<>();
-        for (Map.Entry<Integer, Integer> es : map.entrySet()) {
-            if (es.getValue() == maxValue) {
-                set.add(es.getKey());
-            }
-        }
-
-        List<Integer> list = new ArrayList<>(set);
-        if (list.size() > 1) {
-            return list.get(1);
-        } else {
-            return list.get(0);
-        }
+        // 후보를 정렬하여 두 번째 값을 반환
+        Collections.sort(candidates);
+        return candidates.size() > 1 ? candidates.get(1) : candidates.get(0);
     }
+
 }
