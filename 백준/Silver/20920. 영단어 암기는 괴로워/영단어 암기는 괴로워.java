@@ -29,10 +29,22 @@ public class Main {
             Integer freq1 = map.get(o1);
             Integer freq2 = map.get(o2);
             if (!Objects.equals(freq1, freq2)) {
-                return freq2 - freq1;
+                if (freq1 < freq2) {
+                    return 1;
+                } else if (freq1 > freq2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
             if (o1.length() != o2.length()) {
-                return o2.length() - o1.length();
+                if (o1.length() < o2.length()) {
+                    return 1;
+                } else if (o1.length() > o2.length()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
             return o1.compareTo(o2);
         });
