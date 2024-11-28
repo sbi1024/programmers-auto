@@ -1,5 +1,8 @@
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -10,31 +13,38 @@ public class Main {
 
         // 입력값의 개수
         int forCount = Integer.parseInt(br.readLine());
-        // 나중에 출력값을 찾기 위한 원데이터를 담기 위한 배열 변수 선언
-        int[] findArray = new int[forCount];
-        // 중복 제거 및 정렬된 데이터를 저장하기 위해 Set 변수 선언
-        Set<Integer> set = new TreeSet<>();
-        // 공백값으로 자르기 위한 StringTokenizer 객체 생성
+        // 원데이터를 저장할 배열 변수
+        int[] originalArray = new int[forCount];
+        // 정렬데이터를 저장할 배열 변수
+        int[] sortArray = new int[forCount];
+        // 입력값을 공백기준으로 나누기 위한 StringTokenizer 객체 생성
         StringTokenizer st = new StringTokenizer(br.readLine());
+        // 반복문을 통해 originalArray, sortArray에 데이터 할당
         for (int i = 0; i < forCount; i++) {
-            int input = Integer.parseInt(st.nextToken());
-            findArray[i] = input;
-            set.add(input);
+            String line = st.nextToken();
+            originalArray[i] = Integer.parseInt(line);
+            sortArray[i] = Integer.parseInt(line);
         }
 
-        // 원데이터를 찾기 위한 map 변수 선언
+        // 배열 오름차순으로 정렬
+        Arrays.sort(sortArray);
+
+        int index = 0;
+        // Map<정렬데이터, index(순서)> 로 저장하기 위한 map 변수 선언
         Map<Integer, Integer> map = new HashMap<>();
-        ArrayList<Integer> list = new ArrayList<>(set);
-        for (int i = 0; i < list.size(); i++) {
-            // 원데이터가 정렬값으로 몇번째인지 value 값으로 저장
-            map.put(list.get(i), i);
+        for (int i = 0; i < forCount; i++) {
+            int value = sortArray[i];
+            // 중복된 데이터인 경우는 거르기 위함
+            if (!map.containsKey(value)) {
+                map.put(value, index);
+                index++;
+            }
         }
-
-        // 원데이터가 정렬되었을때 몇번째 인덱스에 해당하는지 반복문으로 찾음
-        for (int fa : findArray) {
-            sb.append(map.get(fa)).append(" ");
+        // 원데이터를 몇번째 인덱스에 해당하는지 map 에서 찾기
+        for (int ori : originalArray) {
+            // sb.append() 메서드를 통해 저장
+            sb.append(map.get(ori)).append(" ");
         }
-
         // bw로 출력하기 위해 문자열로 변환 후 write
         bw.write(sb.toString());
         bw.flush();
