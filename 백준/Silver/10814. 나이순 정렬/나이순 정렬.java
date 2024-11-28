@@ -10,29 +10,39 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         int forCount = Integer.parseInt(br.readLine());
-        String[][] array = new String[forCount][3];
+        Member[] members = new Member[forCount];
         for (int i = 0; i < forCount; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            array[i][0] = st.nextToken();
-            array[i][1] = st.nextToken();
-            array[i][2] = Integer.toString(i);
+            members[i] = new Member(Integer.parseInt(st.nextToken()), st.nextToken(), i);
         }
 
-        Arrays.sort(array, (o1, o2) -> {
-            if (!o1[0].equals(o2[0])) {
-                return Integer.parseInt(o1[0]) - Integer.parseInt(o2[0]);
+        Arrays.sort(members, (o1, o2) -> {
+            if (o1.age != o2.age) {
+                return o1.age - o2.age;
             } else {
-                return Integer.parseInt(o1[2]) - Integer.parseInt(o2[2]);
+                return o1.index - o2.index;
             }
         });
 
-        for (String[] arr : array) {
-            sb.append(arr[0]).append(" ").append(arr[1]).append("\n");
+        for (Member member : members) {
+            sb.append(member.age).append(" ").append(member.name).append("\n");
         }
 
         bw.write(sb.toString());
         bw.flush();
         bw.close();
         br.close();
+    }
+
+    static class Member {
+        int age;
+        String name;
+        int index;
+
+        public Member(int age, String name, int index) {
+            this.age = age;
+            this.name = name;
+            this.index = index;
+        }
     }
 }
