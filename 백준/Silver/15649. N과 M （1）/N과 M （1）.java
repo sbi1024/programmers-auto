@@ -1,29 +1,33 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class Main {
+    public static StringBuilder sb = new StringBuilder();
     public static int n, m;
     public static boolean[] visited;
     public static int[] result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         visited = new boolean[n + 1];
         result = new int[m];
         dfs(0);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
+        br.close();
     }
 
     public static void dfs(int depth) {
         if (depth == m) {
             for (int i = 0; i < m; i++) {
-                System.out.print(result[i] + " ");
+                sb.append(result[i]).append(" ");
             }
-            System.out.println();
+            sb.append("\n");
             return;
         }
 
