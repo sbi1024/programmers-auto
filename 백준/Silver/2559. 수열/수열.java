@@ -15,14 +15,16 @@ public class Main {
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        int MAX_VALUE = Integer.MIN_VALUE;
-        for (int i = 0; i <= array.length - range; i++) {
-            int sum = 0;
-            for (int j = i; j < i + range; j++) {
-                sum += array[j];
-            }
-            if (MAX_VALUE < sum) {
-                MAX_VALUE = sum;
+        int standValue = 0;
+        for (int i = 0; i < range; i++) {
+            standValue += array[i];
+        }
+
+        int MAX_VALUE = standValue;
+        for (int i = 1; i <= array.length - range; i++) {
+            standValue = standValue - array[i - 1] + array[i + range - 1];
+            if (standValue > MAX_VALUE) {
+                MAX_VALUE = standValue;
             }
         }
 
