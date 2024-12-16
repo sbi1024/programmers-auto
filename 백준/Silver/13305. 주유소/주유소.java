@@ -8,19 +8,19 @@ public class Main {
 
         int size = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int[] distances = new int[st.countTokens()];
+        long[] distances = new long[st.countTokens()];
         for (int i = 0; i < distances.length; i++) {
-            distances[i] = Integer.parseInt(st.nextToken());
+            distances[i] = Long.parseLong(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine());
-        int[] price = new int[size];
+        long[] price = new long[size];
         for (int i = 0; i < price.length; i++) {
-            price[i] = Integer.parseInt(st.nextToken());
+            price[i] = Long.parseLong(st.nextToken());
         }
 
-        int totalPrice = 0;
-        int minPrice = price[0];
+        long totalPrice = 0;
+        long minPrice = price[0];
         for (int i = 0; i < distances.length; i++) {
             totalPrice += distances[i] * minPrice;
             if (minPrice > price[i + 1]) {
