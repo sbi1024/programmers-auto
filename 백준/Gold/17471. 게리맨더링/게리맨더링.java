@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -97,26 +98,33 @@ public class Main {
         }
     }
 
+    // check 조건 명확화
+    // 기존의 메서드는 불확실함
+    // 변경 포인트 : 인자값으로 전달받는 list 에서의 연결 여부 확인
     public static boolean check(List<Integer> list) {
-        if (list.isEmpty()) return false;
+        if (list.isEmpty()) {
+            return false;
+        }
 
         boolean[] tempVisit = new boolean[N];
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(list.get(0)); // 첫 번째 노드부터 시작
-        tempVisit[list.get(0) - 1] = true;
-
+        Queue<Integer> queue = new ArrayDeque<>();
+        int startValue = list.get(0);
+        queue.offer(startValue);
+        tempVisit[startValue - 1] = true;
         int count = 0;
         while (!queue.isEmpty()) {
             int poll = queue.poll();
             count++;
 
-            for (int i = 0; i < N; i++) {
-                if (linkArray[poll - 1][i] && list.contains(i + 1) && !tempVisit[i]) {
-                    queue.add(i + 1);
-                    tempVisit[i] = true;
+            for (int i = 0; i < list.size(); i++) {
+                Integer value = list.get(i);
+                if (!tempVisit[value - 1] && linkArray[poll - 1][value - 1]) {
+                    queue.offer(value);
+                    tempVisit[value - 1] = true;
                 }
             }
         }
+
         return count == list.size();
     }
 }
